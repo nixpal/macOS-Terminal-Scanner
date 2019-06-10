@@ -34,7 +34,6 @@ def walk(spaces, dist):
 
 
 
-mac_to_scan = "ec:1a:59:d2:bc:72"
 num = 0
 ESSID = []
 BSSID = []
@@ -133,7 +132,8 @@ def Help():
 |    -b           [ Scan and trace specific AP         ]    |
 |                                                           |
 |    Example: ./WiTracer -b ec:bb:59:aa:bc:50               |
-|             ./WiTracer -all                               |
+|             ./WiTracer -d -all                            |
+|             ./WiTracer -x -all                            |
 +-----------------------------------------------------------+
     """ + reset
 
