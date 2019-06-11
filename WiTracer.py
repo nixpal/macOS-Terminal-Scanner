@@ -22,18 +22,32 @@ green="\033[38;5;2m"
 
 
 
-def walk(spaces, dist):
+def walk(spaces, dist, sig):
+    distColors = ''
+    metric = int(dist/2)
+    for x in range(0,dist):
+        if x <= 2:
+            distColors += (green + "_" + reset)
+        elif 2 < x <= 6:
+            distColors += ("_")
+        elif 6 < x <= 10:
+            distColors += (orange + "_" + reset)
+        elif 10 < x <= dist:
+            distColors += (red + "_" + reset)
+
     x = ("""
                         O
                        \|/
                         | %s\ /
                        / \\%s[O]
-    """) % (" "*spaces, "_"*dist)
+                          %s%s%s
+    """) % (" "*spaces, distColors, " "*metric, cyan+str(sig)+red+"m"+reset, " "*metric)
     return x
 
 
 
 
+mac_to_scan = "ec:1a:59:d2:bc:72"
 num = 0
 ESSID = []
 BSSID = []
@@ -57,14 +71,14 @@ def organize(Data, ESSID, MAC, CH, ENC, SIG, bssid=None, opt=None):
         dist = rounded
         spaces = dist
         db = ('%.2f'%db)
-        dist_to_ap = walk(spaces, dist)
+        dist_to_ap = walk(spaces, dist, db)
     else:
         db = 10**((27.55-(20*(math.log10(TwoG)))-(sig))/20)
         rounded = int(round(db,1)*2)
         dist = rounded
         spaces = dist
         db = ('%.2f'%db)
-        dist_to_ap = walk(spaces, dist)
+        dist_to_ap = walk(spaces, dist, db)
     if bssid != None:
         print '{:<45} {} {:>23} {:>30} {:>39} m'.format(white+essid, green+mac+reset, cyan+ch+reset, enc, orange+db+reset)
         print '{}'.format(dist_to_ap)
