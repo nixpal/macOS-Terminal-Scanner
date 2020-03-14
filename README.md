@@ -1,5 +1,4 @@
 # macOS Terminal Wifi Scanner and Tracer V2
-### Author : Tarek Talaat
 
 - This is the second version of the other macOS Terminal wifi scanner. The first version using shell script with Awk
 to print a nice organized output of airport utility on macOS.
